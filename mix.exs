@@ -29,7 +29,7 @@ defmodule Chroxy.MixProject do
       {:plug_cowboy, "~> 2.0.2"},
       {:cowboy, "~> 2.6.3"},
       {:jason, "~> 1.1"},
-      {:erlexec, "~> 1.10.0"},
+      {:erlexec, git: "https://github.com/saleyn/erlexec.git", override: true },
       {:exexec, "~> 0.2"},
       {:chrome_remote_interface, "~> 0.3.0"},
       {:ex_doc, "~> 0.20", only: :dev, runtime: false}
