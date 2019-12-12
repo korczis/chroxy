@@ -26,25 +26,41 @@ envar = fn name ->
 end
 
 config :logger,
-  :console,
-  metadata: [:request_id, :pid, :module],
-  level: :debug
+       :console,
+       metadata: [:request_id, :pid, :module],
+       level: :debug
 
 config :chroxy,
-  chrome_remote_debug_port_from: envar.("CHROXY_CHROME_PORT_FROM") || "9222",
-  chrome_remote_debug_port_to: envar.("CHROXY_CHROME_PORT_TO") || "9223"
+       chrome_remote_debug_port_from: envar.("CHROXY_CHROME_PORT_FROM") || "9222",
+       chrome_remote_debug_port_to: envar.("CHROXY_CHROME_PORT_TO") || "9223"
 
 config :chroxy, Chroxy.ProxyListener,
-  host: envar.("CHROXY_PROXY_HOST") || "127.0.0.1",
-  port: envar.("CHROXY_PROXY_PORT") || "1331"
+       host: envar.("CHROXY_PROXY_HOST") || "127.0.0.1",
+       port: envar.("CHROXY_PROXY_PORT") || "1331"
 
 config :chroxy, Chroxy.ProxyServer, packet_trace: false
 
 config :chroxy, Chroxy.Endpoint,
-  scheme: :http,
-  port: envar.("CHROXY_ENDPOINT_PORT") || "1330"
+       scheme: :http,
+       port: envar.("CHROXY_ENDPOINT_PORT") || "1330"
 
 config :chroxy, Chroxy.ChromeServer,
-  page_wait_ms: envar.("CHROXY_CHROME_SERVER_PAGE_WAIT_MS") || "200",
-  crash_dumps_dir: envar.("CHROME_CHROME_SERVER_CRASH_DUMPS_DIR") || "/tmp",
-  verbose_logging: 0
+       page_wait_ms: envar.("CHROXY_CHROME_SERVER_PAGE_WAIT_MS") || "200",
+       crash_dumps_dir: envar.("CHROME_CHROME_SERVER_CRASH_DUMPS_DIR") || "/tmp",
+       verbose_logging: 0,
+       chrome_flags: ~w(
+        --headless
+        --disable-gpu
+        --disable-translate
+        --disable-extensions
+        --disable-background-networking
+        --safebrowsing-disable-auto-update
+        --enable-logging
+        --disable-sync
+        --metrics-recording-only
+        --disable-default-apps
+        --mute-audio
+        --no-first-run
+        --no-sandbox
+        --incognito
+      )

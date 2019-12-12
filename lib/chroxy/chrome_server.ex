@@ -320,25 +320,12 @@ defmodule Chroxy.ChromeServer do
   end
 
   defp default_opts do
+    # --headless
+
     [
       chrome_port: 9222,
       chrome_path: chrome_path(),
-      chrome_flags: ~w(
-        --headless
-        --disable-gpu
-        --disable-translate
-        --disable-extensions
-        --disable-background-networking
-        --safebrowsing-disable-auto-update
-        --enable-logging
-        --disable-sync
-        --metrics-recording-only
-        --disable-default-apps
-        --mute-audio
-        --no-first-run
-        --no-sandbox
-        --incognito
-      ),
+      chrome_flags: Application.get_env(:chroxy, Chroxy.ChromeServer)[:chrome_flags],
       verbose_logging: 0,
       crash_dumps_dir: "/tmp"
     ]
