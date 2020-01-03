@@ -26,7 +26,7 @@ defmodule Chroxy.MixProject do
   defp deps do
     [
       {:plug, "~> 1.8.0"},
-      {:plug_cowboy, "~> 2.0.2"},
+      {:plug_cowboy, "~> 2.0"},
       {:cowboy, "~> 2.6.3"},
       {:jason, "~> 1.1"},
       {:erlexec, git: "https://github.com/saleyn/erlexec.git", override: true },
